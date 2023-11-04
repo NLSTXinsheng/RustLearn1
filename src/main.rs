@@ -1,8 +1,26 @@
 use crate::runner::one_er;
+pub use runner::one_er::private_ee; //可用pub将use导出
+
+//使用外部包
+use rand::Rng;
+//标准库std也被视为外部库，但是不需要手动添加
+
+//使用嵌套路径
+use std::{cmp::Ordering, io};
+use std::{self, write};// == use std::io & use std::io::write
+
+use std::collections::* //全部引用，谨慎使用
+
+//声明其他文件的模块
+mod house;
 
 fn main() {
     //cargo的文件系统分为package crate module三类，package就是项目，有一个cargo.toml crate分为二进制binary crate（可编译为执行文件）
     //以及library crate。 main.re and lib.rs分别是两种crate的crate root
+
+    let e = private_ee {
+        long: 828,
+    }
 }
 
 //module
@@ -32,6 +50,11 @@ mod runner {
                     age: 2,
                 }
             }
+        }
+
+        pub struct private_ee {
+            // int: i32,
+            pub long: u64,
         }
     }
 
